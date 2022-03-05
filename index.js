@@ -45,6 +45,12 @@ app.get("/api/persons/:id", (request, response) => {
   }
 });
 
+app.get("/info", (req, res) => {
+  today = new Date();
+  var str = today.toUTCString();
+  res.send(`Phonebook has info for ${notes.length} </br> ${str}`);
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
