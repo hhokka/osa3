@@ -39,7 +39,7 @@ app.get("/api/persons/:id", (request, response) => {
   const note = notes.find((note) => note.id === id);
 
   if (note) {
-    response.json(note);
+    response.send(note.number);
   } else {
     response.status(404).end();
   }
