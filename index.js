@@ -28,7 +28,29 @@ let persons = [
 ];
 
 app.use(express.json());
-app.use(morgan("tiny"));
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :type")
+);
+
+morgan.token("type", (req, res) => JSON.stringify(req.body));
+
+/* app.use(
+  morgan(function (tokens, req, res) {
+    return [
+      tokens.method(req, res),
+      tokens.url(req, res),
+      tokens.status(req, res),
+      tokens.res(req, res, "content-length"),
+      "-",
+      tokens["response-time"](req, res),
+      "ms",
+    ].join(" ");
+  })
+);
+ */
+morgan.token("param", function (req, res, param) {
+  return req.params[param];
+});
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello World!</h1>");
