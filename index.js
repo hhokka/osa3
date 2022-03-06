@@ -61,12 +61,39 @@ const generateId = () => {
 
 app.post("/api/persons", (request, response) => {
   const body = request.body;
+  console.log("request.body: ", request.body);
+  console.log("persons: ", persons);
+  console.log("persons -> body.name: ", body.name);
+  console.log("Object.values: ", Object.values(persons));
+  console.log("match: " + Object.values(persons[0]).includes("Arto Hellas"));
 
-  if (!body.name || !body.number) {
+  if (persons.some((e) => e.name === request.body.name)) {
     return response.status(400).json({
-      error: "content missing",
+      error: "name must be unique",
     });
   }
+  /* if (persons.some((e) => e.number === request.body.number)) {
+    return response.status(400).json({
+      error: "number must be unique",
+    });
+  } */
+  if (body.name === "" || !body.name) {
+    return response.status(400).json({
+      error: "name is missing",
+    });
+  }
+  if (body.number === "" || !body.number) {
+    return response.status(400).json({
+      error: "number is missing",
+    });
+  }
+  /*  if (Object.values(persons).includes(body.name)) {
+    console.log("persons -> body.name: ", body.name);
+
+    return response.status(400).json({
+      error: "name must be unique",
+    });
+  } */
 
   const person = {
     id: generateId(),
