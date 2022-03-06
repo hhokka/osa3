@@ -1,5 +1,6 @@
 const { generatePrime } = require("crypto");
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
@@ -27,6 +28,7 @@ let persons = [
 ];
 
 app.use(express.json());
+app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello World!</h1>");
