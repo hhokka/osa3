@@ -2,6 +2,7 @@ const { generatePrime } = require("crypto");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const cors = require("cors");
 
 app.use(express.json());
 let persons = [
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :type")
 );
+app.use(cors());
 
 morgan.token("type", (req, res) => JSON.stringify(req.body));
 
