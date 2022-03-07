@@ -26,6 +26,11 @@ let persons = [
     name: "Mary Poppendick",
     number: "39-23-6423122",
   },
+  {
+    id: 5,
+    name: "Hans Hokka",
+    number: "045-555-1234",
+  },
 ];
 
 app.use(express.json());
