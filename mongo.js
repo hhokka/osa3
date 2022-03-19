@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 
 if (process.argv.length < 3) {
   console.log("give password as argument");
@@ -39,3 +39,4 @@ if (process.argv[3] && process.argv[4]) {
     mongoose.connection.close();
   });
 }
+ */
